@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Auth.css';
 
 function Login() {
@@ -9,7 +9,7 @@ function Login() {
         password: ''
     });
     const [message, setMessage] = useState('');
-    const navigate = useNavigate();
+    
 
     const handleChange = (e) => {
         setFormData({
@@ -25,7 +25,7 @@ function Login() {
             setMessage(response.data.message);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            setTimeout(() => navigate('/home'), 1500);
+            window.location.href = '/home';
         } catch (error) {
             setMessage(error.response?.data?.message || 'Login failed');
         }
